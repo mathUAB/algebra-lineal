@@ -1,0 +1,79 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*{\QED}{\hfill\ensuremath{\square}}
+\renewcommand{\labelenumii}{(\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii}.}
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+
+\begin{document}
+\begin{flushright}
+    Víctor Ballester\par NIU:1570866\par Març 2020
+\end{flushright}
+\rule{180mm}{0.1mm}\par
+\begin{enumerate}
+    \item Sigui $f:E\longrightarrow E$ una aplicació lineal satisfent $f^2=f$.
+    \begin{enumerate}
+        \item Demostreu que, si $f$ és invertible, aleshores $f=\text{id}_E$.\par
+        Com que $f$ és invertible, existeix una aplicació $g:E\longrightarrow E$ tal que $f\circ g=g\circ f=\text{id}_E$. Llavors tenim que: 
+        \begin{align*}
+            id_E&=f\circ g \qquad\qquad\;\text{Per definició de la inversa.}\\
+            &=f^2\circ g \qquad\qquad\!\text{Per definició.}\\
+            &=f\circ(f\circ g) \qquad\text{Per la propietat associativa}\\
+            &=f\circ id_E \qquad\quad\;\text{Per definició de la inversa.}\\
+            &=f
+        \end{align*}\QED
+        \item Demostreu que $E=\text{Ker }f\oplus\text{Imf }f$.\par
+        Sigui $v\in E$. Aquest vector $v$ el podem escriure de la següent forma: $v=f(v)+(v-f(v))$. Veiem clarament que el primer terme de la dreta de l'expressió ($f(v)$) pertany a la imatge de $f$. Hem de veure que l'altre terme ($v-f(v)$) pertany al nucli. Definim $u=v-f(v)$ i vegem que $u\in \text{Ker }f$.
+        \begin{align*}
+            u&=v-f(v)\\
+            f(u)&=f(v-f(v))\\
+            f(u)&=f(v)-f^2(v)\\
+            f(u)&=f(v)-f(v)\\
+            f(u)&=0
+        \end{align*}
+        I, per tant, $u=v-f(v)\in \text{Ker }f$. Així, hem vist que $E=\text{Ker }f+\text{Imf }f$. Hem de veure ara que la suma és directa, és a dir, $\text{Ker }f\cap\text{Imf }f={0}$. Ho farem agafant un vector de la intersecció i veient que és el vector zero. Sigui $\omega\in\text{Ker }f\cap\text{Imf }f$. En particular com que $\omega\in\text{Ker }f$ tenim que $f(\omega)=0$. A més, com que $\omega\in\text{Im }f$, $\exists\,v \mid f(v)=\omega$. Ara bé,
+        \begin{align*}
+            f(v)&=\omega\\
+            f^2(v)&=f(\omega)\\
+            f^2(v)&=0\\
+            f(v)&=0
+        \end{align*}
+        I, per tant, comparant la primera i la última equació obtenim $\omega=0$ com volíem. Finalment, $E=\text{Ker }f\oplus\text{Im }f$.\QED
+        \item Demostreu que, si $E$ és de dimensió finita, aleshores existeix una base $\mathcal{B}$ de $E$ tal que 
+        $$[f]_\mathcal{B}=
+        \begin{pmatrix}
+        I_k & 0\\
+        0 & 0
+        \end{pmatrix}$$ on $k=\text{dim}(\text{Im }f)$.\par
+        Sigui $\mathcal{B},\mathcal{B'}$ dues bases de $E$ i siguin $[f]_\mathcal{B},[f]_\mathcal{B'}$ les matrius associades a l'aplicació d'aquestes bases. Sabem que $\text{rang }[f]_\mathcal{B}=\text{rang }[f]_\mathcal{B'}=\text{dim}(\text{Im }f)$. A més, pel teorema de la PAQ-reducció existeixen matrius invertibles $P,Q$ tals que $P[f]_\mathcal{B'}Q=\begin{pmatrix}
+        I_k & 0\\
+        0 & 0
+        \end{pmatrix}$. Si definim $P$ com la matriu canvi de base de $\mathcal{B'}$ a $\mathcal{B}$, és a dir, $P=[\text{id}]_{\mathcal{B'},\mathcal{B}}$  i $Q$ com la matriu canvi de base de $\mathcal{B}$ a $\mathcal{B'}$, és a dir, $Q=[\text{id}]_{\mathcal{B},\mathcal{B'}}$ tenim que $P[f]_\mathcal{B'}Q=[f]_\mathcal{B}=\begin{pmatrix}
+        I_k & 0\\
+        0 & 0
+        \end{pmatrix}$. Per tant, hem trobat una base $\mathcal{B}$ tal que a partir d'un base qualsevol $\mathcal{B'}$ i fent els canvis de base corresponents obtenim que la matriu associada a $f$ en la base $\mathcal{B}$ és $\begin{pmatrix}
+        I_k & 0\\
+        0 & 0
+        \end{pmatrix}$. 
+    \end{enumerate}
+    
+    \item 
+    \begin{enumerate}
+        \item Doneu, per a tot $n\geq 2$, un exemple d'aplicació $f_n:\mathbb{R}^n\longrightarrow \mathbb{R}^n$  que satisfaci $f_n^2=f_n$, amb $f_n\ne \text{id}_{\mathbb{R}^n}$,$0_{\mathbb{R}^n}$.\par
+        Per a $n\geq 2$ considerem l'aplicació $f_n:\mathbb{R}^n\longrightarrow \mathbb{R}^n$ definida per $f_n(v_1,\ldots,v_n)=(\frac{v_1+\ldots+v_n}{n},\ldots,\\\frac{v_1+\ldots+v_n}{n})$.
+        \item Podeu trobar per cada $2\leq k\leq n$ una aplicació $f_{k,n}:\mathbb{R}^n\longrightarrow \mathbb{R}^n$ diferent de la identitat tal que $f_{k,n}^k=f_{k,n}$ amb $k$ la potència mínima? (És a dir, tal que $f_{k,n}^l\ne f_{k,n}$ per a tot $l<k$?\par
+        Agafem una $f_{k,n}$ tal que vagi permutant $k-1$ components d'un vector de $\mathbb{R}^n$, és a dir, definim la funció $f_{k,n}$ de la següent manera:
+        \begin{align*}
+            f_{k,n}:\mathbb{R}^n&\longrightarrow\mathbb{R}^n\\
+            (\alpha_1,\ldots,\alpha_n)&\longmapsto(\alpha_{k-1},\alpha_1\ldots,\alpha_{k-2},\alpha_k,\ldots,\alpha_n)
+        \end{align*}
+        Veiem clarament que per $n=2$, obtindríem la identitat i, per tant, la funció $f_{k,n}$ només és vàlida per $n>2$. Per $n=2$ podem agafar la funció definida a l'apartat anterior, $f_2:\mathbb{R}^2\longrightarrow\mathbb{R}^2$ definida per $f_2(x,y)=(\frac{x+y}{2},\frac{x+y}{2})$. Per l'únic valor possible de $k$, $k=2$, aquesta funció verifica que $f_2^2=f_2$.
+        \end{enumerate}
+\end{enumerate}
+\end{document}

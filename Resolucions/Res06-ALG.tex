@@ -1,0 +1,197 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*{\QED}{\hfill\ensuremath{\square}}
+\renewcommand{\labelenumii}{(\alph{enumii})}
+\renewcommand{\labelenumiii}{(\roman{enumiii})}
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+
+\begin{document}
+\begin{flushright}
+    Víctor Ballester\par NIU:1570866\par Abril 2020
+\end{flushright}
+\rule{180mm}{0.1mm}\par
+\begin{enumerate}
+    \item Siguin $E_1,E_2,E_3$ espais vectorials sobre un cos $K$, i siguin $f$ i $g$ dues aplicacions lineals, $$f:E_1\longrightarrow E_2,\qquad g:E_2\longrightarrow E_3.$$
+    \begin{enumerate}
+        \item Demostreu que $\text{Im}(f)=\text{Ker}(g)$ si, i només si, $\text{Im}(g^*)=\text{Ker}(f^*)$.\par
+        Considerem les aplicacions duals de $f$ i $g$:
+        \begin{align*}
+            f^*:E_2^*&\longrightarrow E_1^*& g^*:E_3^*&\longrightarrow E_2^*\\
+            z&\longmapsto z\circ f& \omega&\longmapsto\omega\circ g
+        \end{align*}
+        Sigui $n=\text{dim}(E_2)=\text{dim}(E_2^*)$, $A=[f]_{\mathcal{B}_f,\mathcal{B'}_f}$, $B=[f^*]_{\mathcal{B'}_f^*,\mathcal{B}_f^*}$, $C=[g]_{\mathcal{B}_g,\mathcal{B'}_g}$, $D=[g^*]_{\mathcal{B'}_g^*,\mathcal{B}_g^*}$. Sabem que $A=B^t$ i $C=D^t$.
+        \begin{itemize}
+            \item $\text{Im}(f)=\text{Ker}(g)\implies\text{Im}(g^*)=\text{Ker}(f^*)$: Agafem un element del $\text{Ker}(f^*)$ i vegem que es troba a també $\text{Im}(g^*)$ i viceversa:\par
+            $z\in \text{Ker}(f^*)\iff f^*(z)=0\iff(z\circ f)(v)=0\;\;\forall v\in E_1\iff z(f(v))=0\;\;\forall v\in E_1\iff z\in (\text{Im}(f))^{\text{inc}}$, ja que $(\text{Im}(f))^{\text{inc}}=\{z\in E_2^*:z(u)=0\;\;\forall u\in\text{Im}(f)\}$ $\iff z\in (\text{Ker}(g))^{\text{inc}}$, ja que $(\text{Ker}(g))^{\text{inc}}=\{z\in E_2^*:z(u)=0\;\;\forall u\in\text{Ker}(g)\}$ $\iff z(u)=0$, $\forall u\in\text{Ker}(g)$ $\iff z(u)=\omega(0)$, $\forall u\in\text{Ker}(g)$ i per alguna $\omega\in E_3^*$ $\iff z(u)=\omega(g(u))$, $\forall u\in\text{Ker}(g)$ i per alguna $\omega\in E_3^*$ $\iff z(u)=(\omega\circ g)(u)$, $\forall u\in\text{Ker}(g)$ i per alguna $\omega\in E_3^*$ $\iff z=g^*(\omega)$, per alguna $\omega\in E_3^*\iff z\in\text{Im}(g^*)$.\par A més, podem comprovar que $\text{dim}(\text{Ker}(f^*))=\text{dim}(\text{Im}(g^*))$:
+            \begin{align*}
+                \text{dim}(\text{Ker}(f^*))&=n-\text{dim}(\text{Im}(f^*))\\
+                &=n-\text{rang}(B)\\
+                &=n-\text{rang}(B^t)\\
+                &=n-\text{rang}(A)\\
+                &=n-\text{dim}(\text{Im}(f))\\
+                &=n-\text{dim}(\text{Ker}(g))\\
+                &=n-(n-\text{dim}(\text{Im}(g)))\\
+                &=\text{rang}(C)\\
+                &=\text{rang}(C^t)\\
+                &=\text{rang}(D)\\
+                &=\text{dim}(\text{Im}(g^*))
+            \end{align*}
+            Per tant, $\text{Im}(f)=\text{Ker}(g)\implies\text{Im}(g^*)=\text{Ker}(f^*)$.
+            \item $\text{Im}(g^*)=\text{Ker}(f^*)\implies\text{Im}(f)=\text{Ker}(g)$: Agafem un element del $\text{Ker}(g)$ i vegem que es troba a també $\text{Im}(f)$ i viceversa:\par $u\in\text{Ker}(g)\iff g(u)=0\iff (\omega\circ g)(u)=0$, $\forall\omega\in E_3^*$ $\iff (g^*(\omega))(u)=0$, $\forall\omega\in E_3^*$ $\iff u\in (\text{Im}(g^*))^{\text{inc}}$, ja que $(\text{Im}(g^*))^{\text{inc}}=\{u\in E_2:z(u)=0\;\;\forall z\in\text{Im}(g^*)\}$ $\iff z\in (\text{Ker}(f^*))^{\text{inc}}$, ja que $(\text{Ker}(f^*))^{\text{inc}}=\{u\in E_2:z(u)=0\;\;\forall z\in\text{Ker}(f^*)\}$ $\iff z(u)=0$, $\forall z\in \text{Ker}(f^*)$ $\iff z(u)=f^*(z)$, $\forall z\in \text{Ker}(f^*)$ $\iff z(u)=(z\circ f)(v)$, $\forall z\in \text{Ker}(f^*)$ i per algun $u\in E_1\iff z(u)=z(f(v))$, $\forall z\in \text{Ker}(f^*)$ i per algun $u\in E_1\iff u=f(v)$, per algun $u\in E_1\iff u\in \text{Im}(f)$.\par A més, podem comprovar que $\text{dim}(\text{Ker}(g))=\text{dim}(\text{Im}(f))$:
+            \begin{align*}
+                \text{dim}(\text{Ker}(g))&=n-\text{dim}(\text{Im}(g))\\
+                &=n-\text{rang}(C)\\
+                &=n-\text{rang}(C^t)\\
+                &=n-\text{rang}(D)\\
+                &=n-\text{dim}(\text{Im}(g^*))\\
+                &=n-\text{dim}(\text{Ker}(f^*))\\
+                &=n-(n-\text{dim}(\text{Im}(f^*)))\\
+                &=\text{rang}(B)\\
+                &=\text{rang}(B^t)\\
+                &=\text{rang}(A)\\
+                &=\text{dim}(\text{Im}(f))
+            \end{align*}
+            Per tant, $\text{Im}(g^*)=\text{Ker}(f^*)\implies\text{Im}(f)=\text{Ker}(g)$.
+        \end{itemize}
+        \QED
+        \item Aprofiteu l'apartat anterior per veure que si $V$ i $W$ són dos espais vectorials i $\varphi:V\longrightarrow W$ és una aplicació lineal, aleshores $\varphi$ és injectiva si, i només si, $\varphi^*$ és exhaustiva, i $\varphi$ és exhaustiva si, i només si, $\varphi^*$ és injectiva.\par
+        Considerem l'aplicació $\phi:W\longrightarrow V$ definida per $\phi(v)=0\;\;\forall v\in W$. Observem clarament que $\text{Im}(\phi)=\{0\}$ i, per tant, $\text{Ker}(\phi)=W$. Estudiem ara l'aplicació dual de $\phi$, $\phi^*:V^*\longrightarrow W^*$, definida per $(\phi^*(\omega))(v)=(\omega\circ\phi)(v)$ on $\omega\in V^*$ i $v\in W$. $$(\phi^*(\omega))(v)=(\omega\circ\phi)(v)=(\omega(\phi(v))=\omega(0)=0$$ Com que això és $\forall \omega\in V^*$ i $\forall v\in W$, és clar que $\text{Im}(\phi^*)=\{0\}$ i, per tant, $\text{Ker}(\phi^*)=V^*$. Dit això procedim a demostrar el què ens demanaven.
+        \begin{itemize}
+            \item $\varphi$ injectiva $\iff\text{Ker}(\varphi)=\{0\}=\text{Im}(\phi)\iff\text{Ker}(\phi^*)=V^*=\text{Im}(\varphi^*)\iff\varphi^*$ exhaustiva.
+            
+            \item $\varphi$ exhaustiva $\iff\text{Im}(\varphi)=W=\text{Ker}(\phi)\iff\text{Im}(\phi^*)=\{0\}=\text{Ker}(\varphi^*)\iff\varphi^*$ injectiva.
+        \end{itemize}
+        \QED
+        
+        
+    \end{enumerate}
+    \item Sigui $K$ un cos. Sigui $E=K_n[x]=\{p(x)\in K_n[x]\mid \text{grau}(p(x))\leq n\}$.
+    \begin{enumerate}
+        \item Donat un $a\in K$, proveu que l'aplicació $\omega:E\longrightarrow K$ definida per $\omega(p(x))=p(a)$ és un element de $E^*$. Determineu la dimensió i una base de $\text{Ker}(\omega)$.\par
+        Per veure que $\omega$ és element de $E^*$ hem de veure que donats $p(x),q(x)\in E$ i $\lambda\in K$ tenim que $\omega(p(x)+q(x))=\omega(p(x))+\omega(q(x))$ i $\omega(\lambda p(x))=\lambda\omega(p(x))$.
+        \begin{itemize}
+            \item Sigui $p(x)=\sum_{i=0}^na_ix^i\in E$ i $q(x)=\sum_{i=0}^nb_ix^i\in E$ amb $a_i,b_i\in K$. Sabem per la propietat distributiva que: $$p(x)+q(x)=\sum_{i=0}^na_ix^i+\sum_{i=0}^nb_ix^i=\sum_{i=0}^n(a_i+b_i)x^i=(p+q)(x).$$ Per tant, tenim que:
+            \begin{align*}
+                \omega(p(x)+q(x))&=\omega((p+q)(x))\\
+                &=(p+q)(a)\\
+                &=p(a)+q(a)\\
+                &=\omega(p(x))+\omega(q(x)).
+            \end{align*}
+            \item Sigui $p(x)=\sum_{i=0}^na_ix^i\in \mathbb{R}_n[x]$ amb $a_i\in K$ i $\lambda\in\mathbb{R}$. Sabem per la propietat distributiva que $$\lambda p(x)=\lambda\sum_{i=0}^na_ix^i=\sum_{i=0}^n\lambda a_ix^i=(\lambda p)(x).$$ Per tant, tenim que:
+            \begin{align*}
+                \omega(\lambda p(x))&=\omega((\lambda p)(x))\\
+                &=(\lambda p)(a)\\
+                &=\lambda p(a)\\
+                &=\lambda\omega(p(x)).
+            \end{align*}
+        \end{itemize}
+        \QED\par
+         Per calcular la dimensió del $\text{Ker}(\omega)$ sabem que $\text{dim }E=\text{dim(Im($\omega$))}+\text{dim(Ker($\omega$))}=n+1$. Però com que $\text{dim(Im($\omega$))}\leq \text{dim } K=1$ tenim que la dimensió de la imatge és $1$ o $0$. Però és clar que $\text{dim(Im($\omega$))}=1$ ja que sinó voldria dir que $a$ és arrel de tots els polinomis, però sabem que existeixen polinomis per els quals $a$ no és arrel d'aquests polinomis (polinomis constants, per exemple). Així tenim que $\text{dim(Ker($\omega$))}=\text{dim }E-\text{dim(Im($\omega$))}=n+1-1=n$. Una base del $\text{Ker}(\omega)$ és, per exemple, $\mathcal{B}=(x-a,(x-a)^2,\ldots,(x-a)^n)$. 
+        \item Per $i\in\{0,\ldots,n\}$, considerem l'aplicació $\omega_i:E\longrightarrow K\quad\omega_i(p(x))=p(i)$. Proveu que $\mathcal{B}=(\omega_0,\ldots,\omega_n)$ és una base de $E^*$ si, i  només si, $K$ té característica $0$ o característica $p>n$. Determineu una base $(p_0(x),\ldots,p_n(x))$ de $E$ tal que $\mathcal{B}$ sigui una base dual d'aquesta base.\par
+        Considerem $\mathcal{B}_1=(1,x,\ldots,x^n)$ la base canònica de $E$ i $\mathcal{B}_1^*$ la seva base dual. Provem les dues inclusions:
+        \begin{itemize}
+            \item $\mathcal{B}=(\omega_0,\ldots,\omega_n)$ base de $E^*$ $\implies$ $\text{char}(K)=0$ o $\text{char}(K)=p>n$:\par
+            Considerem $[\omega_i]_{\mathcal{B}_1^*}$, les coordenades de cada forma lineal de $\mathcal{B}$ expressades en la base $\mathcal{B}_1^*$. Tenim que per $i\in\{0,1,\ldots,n\}$, $[\omega_i]_{\mathcal{B}_1^*}=(\omega_i(1),\omega_i(x),\ldots,\omega_i(x^n))=(1,i,\ldots,i^n)$. Veiem que si $1\leq \text{char}(K)=p\leq n$ podem triar un $j=p+i\leq n$ tal que si $i\neq j$ aleshores $[\omega_i]_{\mathcal{B}_1^*}=[\omega_j]_{\mathcal{B}_1^*}$, ja que en aquest cas tindríem que:
+            \begin{align*}
+                (1,i,\ldots,i^n)&=(1,j,\ldots,j^n)\\
+                &=(1,p+i,\ldots,(p+i)^n)\\
+                &=(1,\underbrace{1+\ldots+1}_p+\underbrace{1+\ldots+1}_i,\ldots,(\underbrace{1+\ldots+1}_p+\underbrace{1+\ldots+1}_i)^n)\\
+                &=(1,0+\underbrace{1+\ldots+1}_i,\ldots,(0+\underbrace{1+\ldots+1}_i)^n)\\
+                &=(1,i,\ldots,i^n)
+            \end{align*}
+            Així no totes les coordenades de les formes lineals són linealment independents i, en particular, això implica que $(\omega_0,\ldots,\omega_n)$ no formen una base i, per tant, arribem a contradicció. En canvi, veiem clarament que si $\text{char}(K)=0$ o $\text{char}(K)=p>n$ tenim que si $i\neq j$ aleshores $[\omega_i]_{\mathcal{B}_1^*}\neq m[\omega_j]_{\mathcal{B}_1^*}$ per algun $m\in K$, és a dir, no són linealment dependents.
+            \item $\mathcal{B}=(\omega_0,\ldots,\omega_n)$ base de $E^*$ $\impliedby$ $\text{char}(K)=0$ o $\text{char}(K)=p>n$:\par Per provar aquesta inclusió considerem els vectors
+            \begin{gather*}
+                (1,0^1,\ldots,0^n)\\
+                (1,1^1,\ldots,1^n)\\
+                (1,2^1,\ldots,2^n)\\
+                \vdots\\
+                (1,n^1,\ldots,n^n)
+            \end{gather*}
+            Veiem clarament que aquest vectors son linealment independents ja que $\text{char}(K)=0$ o $\text{char}(K)=p>n$. Ara bé, tenim que:
+            \begin{align*}
+                (1,0^1,\ldots,0^n)&=(q_0(0),q_1(0),\ldots,q_n(0))\\
+                (1,1^1,\ldots,1^n)&=(q_0(1),q_1(1),\ldots,q_n(1))\\
+                \vdots\qquad\quad&=\qquad\qquad\quad\vdots\\
+                (1,n^1,\ldots,n^n)&=(q_0(n),q_1(n),\ldots,q_n(n))
+            \end{align*}
+            on els $q_i$ són els respectius vectors de la base $\mathcal{B}_1$. Sabem que:
+            \begin{align*}
+                (q_0(0),q_1(0),\ldots,q_n(0))&=(\omega_0(q_0),\omega_0(q_1),\ldots,\omega_0(q_n)=[\omega_0]_{\mathcal{B}_1^*}\\
+                (q_0(1),q_1(1),\ldots,q_n(1))&=(\omega_1(q_0),\omega_1(q_1),\ldots,\omega_1(q_n)=[\omega_1]_{\mathcal{B}_1^*}\\
+                \vdots\qquad\qquad&=\qquad\qquad\qquad\vdots\qquad\qquad\quad\;\,=\quad\vdots\\
+                (q_0(n),q_1(n),\ldots,q_n(n))&=(\omega_n(q_0),\omega_n(q_1),\ldots,\omega_n(q_n)=[\omega_n]_{\mathcal{B}_1^*}
+            \end{align*}
+            I com que els vectors inicials eren linealment independents, els vectors coordenades\\ $([\omega_0]_{\mathcal{B}_1^*},\ldots,[\omega_n]_{\mathcal{B}_1^*})$ també ho són i, en particular, també ho són les formes lineals $\omega_0,\ldots,\omega_n$. Com que n'hi ha $n+1=\text{dim}(E^*)$ formen una base de $E^*$.
+        \end{itemize}\QED\par Una base $\mathcal{B'}=(p_0(x),\ldots,p_n(x))$ tal que $\mathcal{B'}^*=\mathcal{B}$ és per exemple la definida per $$p_i(x)=(-1)^i\frac{\prod_{j=0,j\neq i}^n(j-x)}{i!(n-i)!}$$ per $i=0,\ldots,n$. Veiem clarament que $\omega_i(p_j(x))=\delta_{ij}$.
+        \item Ara fixem $K=\mathbb{R}$, i suposem que $n>0$. Considerem l'aplicació: 
+        \begin{align*}
+            \centering
+            \alpha:\mathbb{R}_n[x]&\longrightarrow \mathbb{R}\\
+            p(x)&\longmapsto \int_0^1p(x)dx
+        \end{align*}
+        \begin{enumerate}
+            \item Demostreu que $\alpha$ és una forma lineal sobre $\mathbb{R}_n[x]$.\par
+            Per veure que $\alpha$ és una forma lineal sobre $\mathbb{R}_n[x]$ hem de veure que donats $p(x),q(x)\in \mathbb{R}_n[x]$ i $\lambda\in\mathbb{R}$ tenim que $\alpha(p(x)+q(x))=\alpha(p(x))+\alpha(q(x))$ i $\alpha(\lambda p(x))=\lambda\alpha(p(x))$.
+            \begin{itemize}
+                \item Sigui $p(x)=\sum_{i=0}^na_ix^i\in \mathbb{R}_n[x]$ i $q(x)=\sum_{i=0}^nb_ix^i\in \mathbb{R}_n[x]$ amb $a_i,b_i\in \mathbb{R}$. Sabem per la propietat distributiva que: $$p(x)+q(x)=\sum_{i=0}^na_ix^i+\sum_{i=0}^nb_ix^i=\sum_{i=0}^n(a_i+b_i)x^i=(p+q)(x).$$ Per tant, tenim que:
+                \begin{align*}
+                    \alpha(p(x)+q(x))&=\alpha((p+q)(x))\\
+                    &=\int_0^1(p+q)(x)dx\\
+                    &=\int_0^1(p(x)+q(x))dx\\
+                    &=\int_0^1 p(x)dx+\int_0^1q(x)dx\qquad\text{Per les propietats de la integral.}\\
+                    &=\alpha(p(x))+\alpha(q(x)).
+                \end{align*}
+                \item Sigui $p(x)=\sum_{i=0}^na_ix^i\in \mathbb{R}_n[x]$ $a_i\in \mathbb{R}$ i $\lambda\in\mathbb{R}$. Sabem per la propietat distributiva que $$\lambda p(x)=\lambda\sum_{i=0}^na_ix^i=\sum_{i=0}^n\lambda a_ix^i=(\lambda p)(x).$$ Per tant, tenim que:
+                \begin{align*}
+                    \alpha(\lambda p(x))&=\alpha((\lambda p)(x))\\
+                    &=\int_0^1(\lambda p)(x)dx\\
+                    &=\int_0^1\lambda p(x)dx\\
+                    &=\lambda\int_0^1 p(x)dx\qquad\text{Per les propietats de la integral.}\\
+                    &=\lambda\alpha(p(x)).
+                \end{align*}
+            \end{itemize}
+            
+            \item Pel que hem vist anteriorment, tenim que ($\alpha_0,\ldots,\alpha_n$) és una base de $\mathbb{R}_n[x]^*$ on $\alpha_i(p(x))=p(i)$. Deduïu que existeixen escalars $\lambda_0,\ldots,\lambda_n\in \mathbb{R}$ tals que $\forall p\in\mathbb{R}_n[x]$,$$\int_0^1 p(x)dx=\sum_{i=0}^n \lambda_ip(i).$$\par
+            Sigui $\alpha\in \mathbb{R}_n[x]^*$ una forma lineal. Aleshores podem expressar $\alpha$ com $\alpha=\sum_{i=0}^na_i\alpha_i$. Aplicant $p(x)$ a aquesta expressió on $p(x)\in \mathbb{R}_n[x]$ tenim que:
+            \begin{align*}
+                \alpha(p(x))&=\left(\sum_{i=0}^na_i\alpha_i\right)(p(x))\\
+                \int_0^1p(x)dx&=\sum_{i=0}^na_i\alpha_i(p(x))\\
+                \int_0^1p(x)dx&=\sum_{i=0}^na_ip(i)
+            \end{align*}
+            Ara anomenant $\lambda_i=a_i$ per $i=0,\ldots,n$ hem trobat els escalars $\lambda_0,\ldots,\lambda_n\in \mathbb{R}$ demanats.
+            \item Determineu els escalars $\lambda_i$ per al cas $n=2$.\par
+            Per el cas $n=2$, donat un polinomi $p(x)\in \mathbb{R}_2[x]$ de la forma $p(x)=a+bx+cx^2$ tenim que:
+            \begin{align*}
+                \int_0^1p(x)dx&=\sum_{i=0}^2\lambda_ip(i)\\
+                \left.ax+b\frac{x^2}{2}+c\frac{x^3}{3}\right\vert_0^1&=\lambda_0a+\lambda_1(a+b+c)+\lambda_2(a+2b+4c)\\
+                a+\frac{b}{2}+\frac{c}{3}&=a(\lambda_0+\lambda_1+\lambda_2)+b(\lambda_1+2\lambda_2)+c(\lambda_1+4\lambda_2)
+            \end{align*}
+            D'aquí obtenim un sistema lineal d'equacions en les incògnites $\lambda_0,\lambda_1,\lambda_2$. Solucionant-lo obtenim:
+            \begin{equation*}
+                \begin{pmatrix}
+                  1 & 1 & 1 & 1 \\
+                  0 & 1 & 2 & 1/2 \\
+                  0 & 1 & 4 & 1/3 \\
+               \end{pmatrix}\sim\begin{pmatrix}
+                  1 & 0 & -1 & 1/2 \\
+                  0 & 1 & 2 & 1/2 \\
+                  0 & 0 & 2 & -1/6 \\
+               \end{pmatrix}\sim\begin{pmatrix}
+                  1 & 0 & 0 & 5/12 \\
+                  0 & 1 & 0 & 2/3 \\
+                  0 & 0 & 1 & -1/12 \\
+               \end{pmatrix}
+            \end{equation*}
+            i per tant, $\lambda_0=\frac{5}{12},\lambda_1=\frac{2}{3},\lambda_2=-\frac{1}{12}$.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

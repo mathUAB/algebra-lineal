@@ -1,0 +1,434 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*{\QED}{\hfill\ensuremath{\square}}
+\newcommand{\as}{\mbox{\LARGE $A_S$}}
+\newcommand{\bs}{\mbox{\LARGE $B^S$}}
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+
+
+
+\begin{document}
+\begin{flushright}
+    Víctor Ballester\par NIU:1570866\par Novembre 2019
+\end{flushright}
+\rule{170mm}{0.1mm}
+\begin{enumerate}
+    \item Demostreu que si $m>n$ aleshores $\det(AB)=0$.\par
+    Sigui $A\in \mathcal{M}_{m\times n}(K)$ i $B\in \mathcal{M}_{n\times m}(K)$. Sabem que $rang(A)\leq n$ i que $rang(B)\leq n$ tenint en compte que $n<m$. A més, les matrius $A$ i $B$ són de la forma: 
+    $$A=\begin{pmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \cdots & a_{mn}
+   \end{pmatrix}\qquad\qquad\qquad\qquad
+   B=\begin{pmatrix}
+      b_{11} & b_{12} & \cdots & b_{1m} \\
+      b_{21} & b_{22} & \cdots & b_{2m} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      b_{n1} & b_{n2} & \cdots & b_{nm}
+   \end{pmatrix}$$
+   Ara bé, podem reduir les matrius $A$ i $B$, fent transformacions elementals, a unes matrius $A'=PA$ i $B'=BQ$ (amb $P\in \mathcal{M}_m(K)$ i $Q\in \mathcal{M}_m(K)$, matrius invertibles) de la forma 
+   $A'=\begin{pmatrix}
+   I_r \\
+   0
+   \end{pmatrix}$
+   i
+   $B'=\begin{pmatrix}
+   I_s & 0
+   \end{pmatrix}$
+   on $r$ i $s$ són els rangs de les matrius $A'$ i $B'$, respectivament i, per tant, també són els rangs de $A$ i $B$. Llavors, el rang del producte $AB$ serà el mateix que el del producte $A'B'=(PA)(BQ)$. Si anomenem $C=A'B'$, tenim que: 
+   $$C=A'B'=\begin{pmatrix}
+      1 & 0 & \cdots & 0 \\
+      0 & 1 & \ddots & \vdots \\
+      \vdots & \ddots & \ddots & 0 \\
+      0 & \cdots & 0 & 1 \\
+      0 & 0 & \cdots & 0 \\
+      \vdots & \vdots &  & \vdots \\
+      0 & 0 & \cdots & 0 \\
+   \end{pmatrix}
+   \begin{pmatrix}
+      1 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+      0 & 1 & \ddots & \vdots & 0 & \cdots & 0\\
+      \vdots & \ddots & \ddots & 0 & \vdots &  & \vdots \\
+      0 & \cdots & 0 & 1 & 0 & \cdots & 0\\
+   \end{pmatrix}=
+   \begin{pmatrix}
+      1 & 0 & \cdots & 0 & 0 & \cdots & 0\\
+      0 & 1 & \ddots & \vdots & 0 & \cdots & 0 \\
+      \vdots & \ddots & \ddots & 0 & \vdots &  & \vdots  \\
+      0 & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+      0 & 0 & \cdots & 0 & 0 & \cdots & 0 \\
+      \vdots & \vdots &  & \vdots & \vdots &  & \vdots  \\
+      0 & 0 & \cdots & 0 & 0 & \cdots & 0\\
+   \end{pmatrix}$$ on $C\in \mathcal{M}_m(K)$. Abans hem suposat que ambdues matrius ($A$ i $B$) tenen rang màxim (ja que hem escrit $n$ pivots a les seves respectives matrius esglaonades) així que com a màxim la matriu $C$ tindrà $rang=n$. Però com que $C$ és de mida $m\times m$ i $m>n$, aleshores $\det C=0$. Llavors tenim que: 
+   \begin{align*}
+       C=A'B'&=(PA)(BQ)=P(AB)Q \\
+       \det C&=\det [P(AB)Q] \\
+       \det C&=\det P \det(AB) \det Q
+   \end{align*}
+   Com que $P$ i $Q$ són matrius invertibles, sabem que $\det P\ne 0$ i $\det Q\ne 0$. D'aquesta manera podem dividir ambdós costats de l'equació per $(\det P \det Q)$. Així doncs:
+   \begin{align*}
+       \det C&=\det P \det(AB) \det Q \\
+       0&=\det P \det(AB) \det Q \\
+       0&=\det(AB)
+   \end{align*}\QED
+   
+   
+   
+    \item Trobeu matrius\par 
+    $D=\begin{pmatrix}
+   I_m & D_1 \\
+   0 & D_2
+   \end{pmatrix}$ i
+   $E=\begin{pmatrix}
+   E_2 & E_1 \\
+   0 & I_n
+   \end{pmatrix}$ tals que
+   $\begin{pmatrix}
+   I_m & -A \\
+   B & I_n
+   \end{pmatrix}=
+   \begin{pmatrix}
+   I_m & 0 \\
+   B & I_n
+   \end{pmatrix}D=
+   E\begin{pmatrix}
+   I_m & 0 \\
+   B & I_n
+   \end{pmatrix}.$\par
+   Per tal de simplificar el màxim possible les matrius $D$ i $E$ considerarem $m=n=1$, per tant, $I_m,I_n,D_1,D_2,E_1,E_2,A,B \in \mathcal{M}_1(K)$. Considerem, a més, $F=\begin{pmatrix}
+   I_m & 0 \\
+   B & I_n
+   \end{pmatrix}$ i $C=\begin{pmatrix}
+   I_m & -A \\
+   B & I_n
+   \end{pmatrix}$. Fixem inicialment els valors de la matriu $D$: $D_1=2$ i $D_2=1$. LLavors:
+   \begin{align*}
+       C&=FD \\
+   \begin{pmatrix}
+   I_m & -A \\
+   B & I_n
+   \end{pmatrix}&=
+   \begin{pmatrix}
+   I_m & 0 \\
+   B & I_n
+   \end{pmatrix}
+   \begin{pmatrix}
+   I_m & D_1 \\
+   0 & D_2
+   \end{pmatrix} \\
+   \begin{pmatrix}
+   1 & -A \\
+   B & 1
+   \end{pmatrix}&=
+   \begin{pmatrix}
+   1 & 0 \\
+   B & 1
+   \end{pmatrix}
+   \begin{pmatrix}
+   1 & 2 \\
+   0 & 1
+   \end{pmatrix}
+   \end{align*}
+   De la definició de producte de matrius, operant sabem que $-A=2$ i $1=2B+1$. Per tant, tenim que $A=-2$ i $B=0$. Procedint de manera anàloga per a la matriu $E$, tenim que:
+   \begin{align*}
+       C&=EF \\
+   \begin{pmatrix}
+   I_m & -A \\
+   B & I_n
+   \end{pmatrix}&=
+   \begin{pmatrix}
+   E_2 & E_1 \\
+   0 & I_n
+   \end{pmatrix}
+   \begin{pmatrix}
+   I_m & 0 \\
+   B & I_n
+   \end{pmatrix} \\
+   \begin{pmatrix}
+   1 & 2 \\
+   0 & 1
+   \end{pmatrix}&=
+   \begin{pmatrix}
+   E_2 & E_1 \\
+   0 & 1
+   \end{pmatrix}
+   \begin{pmatrix}
+   1 & 0 \\
+   0 & 1
+   \end{pmatrix}
+   \end{align*}
+    De la definició de producte de matrius, operant sabem que $E_2=1$ i $E_1=2$.\par Finalment: $$D=\begin{pmatrix}
+   1 & 2 \\
+   0 & 1
+   \end{pmatrix}\qquad\qquad\qquad\qquad E=\begin{pmatrix}
+   1 & 2 \\
+   0 & 1
+   \end{pmatrix}$$
+   \textit{Nota: Estrictament hauria de representar les matrius $D$ i $E$ com $D=\begin{pmatrix}
+   (1) & (2) \\
+   (0) & (1)
+   \end{pmatrix}$ i $E=\begin{pmatrix}
+   (1) & (2) \\
+   (0) & (1)
+   \end{pmatrix}$, ja que són matrius creades a parir d'altres matrius (en aquest cas de mida $1\times 1$). Però com que ho hem volgut simplificar, hem agafat les submatrius de mida $1\times 1$ que en realitat són els números tal i com els coneixem, per això les submatrius anteriors estan escrites sense els seus respectius parèntesis.}
+   
+   
+   
+    \item Useu l’anterior per concloure que $\det(I_m + AB)=\det(I_n + BA)$. Més en general, proveu que si $\lambda \in K\setminus \{0\}$, $\det(\lambda I_n+ BA)=\lambda^{n-m}\det(\lambda I_m + AB)$.\par
+    Ho demostrarem pel cas general. De manera general i agafant les matrius $C=\begin{pmatrix}
+   \lambda I_m & -A \\
+   B & I_n
+   \end{pmatrix}$ i $F=\begin{pmatrix}
+   \lambda I_m & 0 \\
+   B & I_n
+   \end{pmatrix}$, sabem pel seminari 1 que multiplicar matrius per blocs es procedeix de igual manera que multiplicar matrius amb coeficients. Per tant: $$C=FD=\begin{pmatrix}
+   \lambda I_m & 0 \\
+   B & I_n
+   \end{pmatrix}
+   \begin{pmatrix}
+   I_m & D_1 \\
+   0 & D_2
+   \end{pmatrix}=\begin{pmatrix}
+   \lambda I_m^2 & \lambda I_mD_1 \\
+   BI_m & BD_1+I_nD_2
+   \end{pmatrix}=\begin{pmatrix}
+   \lambda I_m & \lambda D_1 \\
+   B & BD_1+D_2
+   \end{pmatrix}$$
+   $$C=EF=\begin{pmatrix}
+   E_2 & E_1 \\
+   0 & I_n
+   \end{pmatrix}
+   \begin{pmatrix}
+   \lambda I_m & 0 \\
+   B & I_n
+   \end{pmatrix}=\begin{pmatrix}
+   E_2\lambda I_m+E_1B & E_1I_n \\
+   I_nB & I_n^2
+   \end{pmatrix}=\begin{pmatrix}
+   \lambda E_2+E_1B & E_1 \\
+   B & I_n
+   \end{pmatrix}$$
+   Ara igualant tots els termes de $C$ tenim que:
+   \begin{align}
+       C&=FD=EF \label{4}\\
+       \lambda I_m&=\lambda I_m=\lambda E_2+E_1B \label{1}\\
+       -A&=\lambda D_1=E_1 \label{2}\\
+       B&=B=B \\
+       I_n&=BD_1+D_2=I_n \label{3}
+   \end{align}
+   Combinant les equacions \ref{1} i \ref{2} i les equacions \ref{3} i \ref{2}, tenim que:
+   \begin{align*}
+       \lambda I_m&=\lambda E_2+E_1B &I_n&=BD_1+D_2 \\
+       \lambda I_m&=\lambda E_2+(-A)B &I_n&=B(-\frac{1}{\lambda}A)+D_2 \\
+       \lambda E_2&=\lambda I_m+AB &D_2&=I_n+\frac{1}{\lambda}BA \\
+       \lambda E_2&=\lambda I_m+AB &\lambda D_2&=\lambda I_n+BA
+   \end{align*}
+   Però clar de l'equació \ref{4} i, tenint en compte l'última igualtat i els conceptes sobre determinants en matrius per blocs del seminari 2, sabem que:
+   \begin{align*}
+       FD&=EF \\
+       \det (FD)&=\det (EF) \\
+       \det F \det D&=\det E \det F \\
+       \det D&=\det E \\
+       \det I_m \det D_2&=\det E_2 \det I_n \\
+       \det D_2&=\det E_2 \\
+       \lambda^n\lambda^m\det D_2&=\lambda^n\lambda^m\det E_2 &\text{multiplicant ambdós termes de la igualtat per  $\lambda^n\lambda^m$.}\\
+       \lambda^n\det D_2&=\lambda^{n-m}\lambda^m\det E_2 \\
+       \det (\lambda D_2)&=\lambda^{n-m}\det (\lambda E_2) &\text{tenint en compte que $D_2$ té $n$ files i que $E_2$ té $m$ files.}\\
+       \det (\lambda I_n+BA)&=\lambda^{n-m}\det (\lambda I_m+AB)
+   \end{align*}
+    Ara si posem $\lambda=1$, tenim que $\det ( I_n+BA)=\det (I_m+AB)$ que és la primera igualtat que es volia demostrar.\par\QED
+    
+    
+    
+    \item Sigui $C\in \mathcal{M}_n(K)$. Demostreu que $\forall k \in \{1,\ldots,n\}$ el coeficient $\lambda^{n-k}$ del polinomi $\det (\lambda I_n+C)$ és igual a $$\sum_S\det C_S^S$$ on la suma recorre tots els subconjunts $S\subseteq \{1,\ldots,n\}$ de tamany $k$ (n'hi ha $\binom{n}{k}$).\par
+    Abans de demostrar-ho, volem deixar clar uns conceptes relacionats amb les propietats dels determinants: \par Sigui $A\in \mathcal{M}_n(K)$. Per calcular el determinant de la matriu $\lambda I_n +A$ procedirem de la següent manera: 
+    \begin{multline*}
+        \det(\lambda I_n +A)=\begin{vmatrix}
+      a_{11}+\lambda & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & \cdots & a_{nn}+\lambda
+   \end{vmatrix}=\begin{vmatrix}
+      a_{11} & a_{12} &\cdots & a_{1n} \\
+      a_{21} & a_{22}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & \cdots & a_{nn}+\lambda
+   \end{vmatrix}+\\+\begin{vmatrix}
+      \lambda & a_{12} & \cdots & a_{1n} \\
+      0 & a_{22}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      0 & a_{n2} & \cdots & a_{nn}+\lambda
+   \end{vmatrix}=\begin{vmatrix}
+      a_{11} & a_{12} & a_{13} &\cdots & a_{1n} \\
+      a_{21} & a_{22} & a_{23} & \cdots & a_{2n} \\
+      a_{31} & a_{32} & a_{33}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & a_{n3}& \cdots & a_{nn}+\lambda
+   \end{vmatrix}+\\+\begin{vmatrix}
+      a_{11} & 0 & a_{13} &\cdots & a_{1n} \\
+      a_{21} & \lambda & a_{23} & \cdots & a_{2n} \\
+      a_{31} & 0 & a_{33}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & 0 & a_{n3}& \cdots & a_{nn}+\lambda
+   \end{vmatrix}+\begin{vmatrix}
+      \lambda & a_{12} & a_{13} &\cdots & a_{1n} \\
+      0 & a_{22} & a_{23} & \cdots & a_{2n} \\
+      0 & a_{32} & a_{33}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      0 & a_{n2} & a_{n3}& \cdots & a_{nn}+\lambda
+   \end{vmatrix}+\end{multline*}\begin{multline*}+\begin{vmatrix}
+      \lambda & 0 & a_{13} &\cdots & a_{1n} \\
+      0 & \lambda & a_{23} & \cdots & a_{2n} \\
+      0 & 0 & a_{33}+\lambda & \cdots & a_{2n} \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      0 & 0 & a_{n3}& \cdots & a_{nn}+\lambda
+   \end{vmatrix}=\begin{vmatrix}
+      a_{11} & a_{12} &\cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & \cdots & a_{nn}
+   \end{vmatrix}+\cdots+\begin{vmatrix}
+      \lambda & 0 &\cdots & 0 \\
+      0 & \lambda & \ddots & \vdots \\
+      \vdots & \ddots & \ddots & 0 \\
+      0 & \cdots & 0 & \lambda
+   \end{vmatrix}
+    \end{multline*}
+    Així el polinomi $P(\lambda)$ serà de la forma $P(\lambda)=\det (\lambda I_n+A)=b_n\lambda^n+b_{n-1}\lambda^{n-1}+\cdots+b_1\lambda+b_0$ amb $b_n=1$ i $b_0=\det A$.\par
+    Tornant al problema, demostrarem per inducció sobre l'enter $n$ que el coeficient $\lambda^{n-k}$ del polinomi $\det (\lambda I_n+C)$ és igual a $$\sum_S\det C_S^S$$ on la suma recorre tots els subconjunts $S\subseteq \{1,\ldots,n\}$ de tamany $k$.\par
+    El cas $n=1$ és completament obvi, ja que la matriu $X=\lambda I_n+C=\begin{pmatrix}
+   \lambda +c_{11}
+   \end{pmatrix}$ i el determinant d'aquesta matriu de mida $1\times1$ és l'únic element d'aquesta, per tant: $\det X=\lambda +c_{11}$. El coeficient de $\lambda$ és 1 i fent $k=0$ correspon a $\sum_S\det C_S^S=1$, ja que subconjunts $S\subseteq \{1,\ldots,n\}$ de tamany 0, n'hi ha exactament 1.\par
+   Ara fixem un enter $\alpha$ per el qual es verifica que el coeficient $\lambda^{\alpha-k}$ del polinomi $\det (\lambda I_\alpha+C)$, amb $C\in \mathcal{M}_\alpha(K)$, és igual a $\sum_S\det C_S^S$ on la suma recorre tots els subconjunts $S\subseteq \{1,\ldots,\alpha\}$ de tamany $k$ (n'hi ha $\binom{\alpha}{k}$). Ho demostrarem pel cas $\alpha+1$.\par Ara bé nosaltres podem esglaonar la matriu $C$ fent transformacions elementals per files de manera que ens quedi una matriu $C^\sim$ de la forma: $$C^\sim=\begin{pmatrix}
+      c_{11}^\sim & \ast & \cdots & \ast \\
+      0 & c_{22}^\sim & \ddots & \vdots \\
+      \vdots & \ddots & \ddots & \ast \\
+      0 & \cdots & 0 & c_{\alpha\alpha}^\sim
+   \end{pmatrix}$$
+   Sabem que el polinomi $P(\lambda)=\det(\lambda I_\alpha+C)=\lambda^\alpha+c_{\alpha-1}\lambda^{\alpha-1}+\cdots+c_1\lambda+c_0$, on $c_0=\prod_i^\alpha c_{ii}^\sim=\det C$. 
+   Multiplicant el polinomi $P(\lambda)$ per el un valor $\lambda +d$, podem crear un altre polinomi $P'(\lambda)$ de la forma: 
+   \begin{multline*}
+       P'(\lambda)=(\lambda+d)P(\lambda)=(\lambda+d)(\lambda^\alpha+c_{\alpha-1}\lambda^{\alpha-1}+\cdots+c_{\alpha-k}\lambda^{\alpha-k}+\cdots+c_1\lambda+c_0)=\lambda^{\alpha+1}+\\+d\lambda^\alpha+c_{\alpha-1}\lambda^\alpha+c_{\alpha-1}d\lambda^{\alpha-1}+\cdots+c_{\alpha-k}\lambda^{\alpha-k+1}+c_{\alpha-k}d\lambda^{\alpha-k}+\cdots+c_1\lambda^2+c_1d\lambda+c_0\lambda+c_0d=\\=\lambda^{\alpha+1}+(d+c_{\alpha-1})\lambda^\alpha+(c_{\alpha-1}d+c_{\alpha-2})\lambda^{\alpha-1}+\cdots+(c_{\alpha-k+1}d+c_{\alpha-k})\lambda^{\alpha-k+1}+\cdots+(c_1d+c_0)\lambda+c_0d
+   \end{multline*}
+   Pel que hem vist a la introducció d'aquest apartat, el coeficient $c_0d=\det C'$ amb $C'\in \mathcal{M}_{\alpha+1}(K)$. Però $c_0=\det C$, per tant, podem escriure la matriu $C'$, en la seva forma esglaonada ($C'^\sim$), de la següent manera:
+   $$C'^\sim=\begin{pmatrix}
+      c_{11}^{'\sim} & \ast & \ast & \cdots & \ast\\
+      0 & c_{22}^{'\sim} & \ast & \ddots & \vdots\\
+      0 & 0 & \ddots & \ddots & \ast\\
+      \vdots & \ddots & \ddots & c_{\alpha\alpha}^{'\sim} & \ast \\
+      0 & \cdots & 0 & 0 & d
+   \end{pmatrix}$$
+   Tornant al polinomi $P'(\lambda)$, sabem per H.I. que el coeficient de $\lambda^{(\alpha+1)-k}$ ($c_{\alpha+1-k}^\sim$) és igual a $\sum_{S'} \det C_{S'}^{'S'}$, on la suma recorre tots els subconjunts $S'\subseteq \{1,\ldots,\alpha+1\}$ de tamany $k$ (n'hi ha $\binom{\alpha+1}{k}$). Però clar, $c_{\alpha+1-k}^\sim=c_{\alpha-k+1}d+c_{\alpha-k}=c_{\alpha-(k-1)}d+c_{\alpha-k}$. Del primer terme de la dreta tenim $\binom{\alpha}{k-1}$ subsumands i del segon terme de la dreta en tenim $\binom{\alpha}{k}$. Aplicant la relació $\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}$, tenim que el terme de l'esquerra de l'equació té $\binom{\alpha+1}{k}$ subsumands, com havíem dit anteriorment. Ara falta veure que siguin els mateixos subsumads. Però això és directe ja que els sumands de $\sum_{S'} \det C_{S'}^{'S'}$ seran tots els sumands de $\sum_S \det C_S^{S}$ més la suma dels determinants obtinguts de combinar els elements $c_{ii}$ de $C$, $i\in S$, en grups de $k-1$ elements i multiplicar-los tots per l'element $d$. Però això últim és exactament $c_{\alpha-k+1}d$, amb la qual cosa ja hem acabat.\par\QED
+   
+   
+   
+    \item Demostreu que $\forall S\subseteq \{1,\ldots,n\}$ de tamany $m$ es té $$\det((BA)_S^S)=\det A_S \det B^S$$ i deduïu la fórmula $$\det (AB)=\sum_S \det A_S \det B^S$$ on la suma recorre tots els subconjunts $S\subseteq \{1,\ldots,n\}$ de tamany $m$ (n'hi ha $\binom{n}{m}$).\par
+    Considerem matrius $A\in \mathcal{M}_{m\times n}(K)$ i $B\in \mathcal{M}_{n\times m}(K)$ de la forma: $$A=\begin{pmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \cdots & a_{mn}
+   \end{pmatrix}\qquad\qquad\qquad\qquad
+   B=\begin{pmatrix}
+      b_{11} & b_{12} & \cdots & b_{1m} \\
+      b_{21} & b_{22} & \cdots & b_{2m} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      b_{n1} & b_{n2} & \cdots & b_{nm}
+   \end{pmatrix}$$ Donat un subconjunt $S=\{s_1,s_2,\ldots,s_m\}$ fix, WLOG puc reorganitzar les matrius $A$ i $B$ de manera que em quedin de la forma següent:
+   $$A=\begin{pmatrix}
+      a_{1S_1} & a_{1S_2} & \cdots & a_{1S_m} & \ast & \cdots & \ast\\
+      a_{2S_1} & a_{2S_2} & \cdots & a_{2S_m} & \ast & \cdots & \ast \\
+      \vdots & \vdots & \ddots & \vdots & \vdots &  & \vdots\\
+      a_{mS_1} & a_{mS_2} & \cdots & a_{mS_m} & \ast & \cdots & \ast
+   \end{pmatrix}\qquad\qquad\qquad
+   B=\begin{pmatrix}
+      b_{S_11} & b_{S_12} & \cdots & b_{S_1m} \\
+      b_{S_21} & b_{S_22} & \cdots & b_{S_2m} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      b_{S_m1} & b_{S_m2} & \cdots & b_{S_mm} \\
+      \ast & \ast & \cdots & \ast \\
+      \vdots & \vdots &  & \vdots \\
+      \ast & \ast & \cdots & \ast \\
+   \end{pmatrix}$$
+   és a dir:
+   $$
+    A=\begin{pmatrix}
+    \as & \rvline & \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix} \\
+    \end{pmatrix}\qquad\qquad\qquad
+    B=\begin{pmatrix}
+    \bs \\
+    \hline
+    \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix}
+    \end{pmatrix}
+   $$
+   on $A_S$ denota la matriu $m\times m$ que s’obté en sel·leccionar les columnes de $A$ indicades pels elements de $S$ i $B$ denota la matriu $m\times m$ que s’obté de sel·leccionar les files corresponents de B. Per tant, anomenant $C\in \mathcal{M}_n (K)$ a la matriu resultant del producte de matrius $BA$, aquesta serà de la forma:
+   $$
+   C=BA=\begin{pmatrix}
+    \bs \\
+    \hline
+    \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix}
+    \end{pmatrix}\begin{pmatrix}
+    \as & \rvline & \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix} \\
+    \end{pmatrix}=\begin{pmatrix}
+    \bs \as & \rvline & \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix} \\
+    \hline
+    \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix} & \rvline & \begin{matrix}
+    \ast & \cdots & \ast \\
+    \vdots & & \vdots \\
+    \ast & \cdots & \ast
+    \end{matrix} \\
+    \end{pmatrix}
+   $$
+   per la definicó de producte de matrius per blocs. Sel·leccionant la submatriu obtinguda escollint les entrades $c_{ij}$ de $C$ amb $i,j\in S$, ens trobem que és exactament $B^SA_S$.\par Retocant la igualtat de l'enunciat, podem arribar a la següent igualtat:
+   \begin{align*}
+       \det((BA)_S^S)&=\det A_S \det B^S \\
+       \det((BA)_S^S)&=\det B^S\det A_S  \\
+       \det((BA)_S^S)&=\det (B^SA_S)
+   \end{align*}
+   Fa un moment hem demostrat que $(BA)_S^S=B^SA_S$, per tant $\det((BA)_S^S)=\det (B^SA_S)$.\par\QED\par
+   Per a la segona part volem demostrar que $\det (AB)=\sum_S \det A_S \det B^S$. Per a fer-ho, partim de la igualtat anterior:
+   \begin{align*}
+       \det((BA)_S^S)&=\det A_S \det B^S \\
+       \sum_S\det((BA)_S^S)&=\sum_S\det A_S \det B^S
+   \end{align*}
+   Ara bé, a l'apartat 4 hem vist que el coeficient de $\lambda^{n-m}$ del polinomi $\det(\lambda I_n+BA)$ és igual a $\sum_S\det((BA)_S^S)$ on la suma recorre tots els subconjunts $S\subseteq \{1,\ldots,n\}$ de tamany $m$. Però per l'apartat 3 sabem que $\det(\lambda I_n+BA)=\lambda^{n-m}\det(\lambda I_m+AB)$. D'aquesta manera, expandint els polinomis, tenim que:
+   \begin{align*}
+    \det(\lambda I_n+BA)&=\lambda^{n-m}\det(\lambda I_m+AB) \\
+       \lambda^n+(ba)_{n-1}\lambda^{n-1}+\cdots+(ba)_1\lambda+(ba)_0&=\lambda^{n-m}(\lambda^m+(ab)_{m-1}\lambda^{m-1}+\cdots+(ab)_1\lambda+(ab)_0) \\
+       \lambda^n+(ba)_{n-1}\lambda^{n-1}+\cdots+(ba)_1\lambda+(ba)_0&=\lambda^m+(ab)_{m-1}\lambda^{n-1}+\cdots+(ab)_1\lambda^{n-m+1}+(ab)_0\lambda^{n-m}
+   \end{align*}
+   Igualant els coeficients dels $\lambda$'s amb mateix grau, tenim que $(ab)_0=det(AB)=(ba)_{n-m}=\sum_S\det((BA)_S^S)$. Finalment: $$\sum_S\det((BA)_S^S)=\det(AB)=\sum_S\det A_S \det B^S$$\QED
+\end{enumerate}
+\end{document}
